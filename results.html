@@ -12,23 +12,22 @@
 
   <body>
     <header>
-      <div class="pokemon-info-area">
-        <span>Pokemon Seen:</span><span id="pokemon-seen">0</span>
-      </div>
+      <div class="pokemon-info-area"></div>
       <div>
         <h1 class="game-title">Results Page</h1>
       </div>
-      <div class="pokemon-info-area">
-        <span>Pokemon Captured:</span><span id="pokemon-basket">0</span>
-      </div>
+      <div class="pokemon-info-area"></div>
     </header>
 
-    <main></main>
+    <main id="background-image-area">
+      <canvas id="myChart"></canvas>
+    </main>
 
     <footer>
       <div>&copy; 2020 Wilson Empire</div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script type="module" src="results-scripts.js"></script>
   </body>
 </html>

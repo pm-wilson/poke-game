@@ -4,19 +4,6 @@ export function chooseRandomItemFromArray(array) {
     return array[randomIndex];
 }
 
-export function getArrayWithoutObjWithIdFromArray(id, array) {
-    const newArray = [];
-
-    for (let i = 0; i < array.length; i++) {
-        const currentArrayItem = array[i];
-
-        if (currentArrayItem._id !== id) {
-            newArray.push(currentArrayItem);
-        }
-    }
-    return newArray;
-}
-
 export function isItemInArray(item, array) {
     for (let i = 0; i < array.length; i++) {
         const currentArrayItem = array[i];
@@ -81,22 +68,18 @@ export function getRandomBackground() {
     return 'url(./assets/backgrounds/background' + randomNumber + '.jpg)';
 }
 
-export function getItemFromArrayWithId(id, array) {
-    for (var i = 0; i < array.length; i++) {
-        const currentArrayItem = array[i];
-
-        if (currentArrayItem.id === id) {
-            return currentArrayItem;
-        }
-    }
-    return null;
-}
-
 export function saveToLocalStorage(encounteredArray, caughtArray) {
     const gameData = { pokemonEncountered: encounteredArray, pokemonCaught: caughtArray },
         stringyGameData = JSON.stringify(gameData);
 
     localStorage.setItem('game1', stringyGameData);
+}
+
+export function loadFromLocalStorage() {
+    const stringyData = localStorage.getItem('game1'),
+        gameData = JSON.parse(stringyData);
+
+    return gameData;
 }
 
 export function getSize() {
@@ -109,4 +92,80 @@ export function getSize() {
         case 3: return '115px';
         case 4: return '125px';
     }
+}
+
+export function getArrayWithoutObjWithIdFromArray(id, array) {
+    const newArray = [];
+
+    for (let i = 0; i < array.length; i++) {
+        const currentArrayItem = array[i];
+
+        if (currentArrayItem._id !== id) {
+            newArray.push(currentArrayItem);
+        }
+    }
+    return newArray;
+}
+
+export function getItemFromArrayWithId(id, array) {
+    for (var i = 0; i < array.length; i++) {
+        const currentArrayItem = array[i];
+
+        if (currentArrayItem.id === id || currentArrayItem._id === id) {
+            return currentArrayItem;
+        }
+    }
+    return null;
+}
+
+function getQuantityWithId(id, array) {
+    for (var i = 0; i < array.length; i++) {
+        const currentArrayItem = array[i];
+
+        if (id === currentArrayItem.id) {
+
+            return currentArrayItem.quantity;
+        }
+    }
+    return 0;
+}
+
+export function getMungedData(gameData, pokemonData) {
+    const objectsToGetNamesFrom = gameData.pokemonEncountered,
+        names = [],
+        encountered = [],
+        caught = [],
+        color1 = [],
+        color2 = [],
+        colorf = [];
+
+    for (let i = 0; i < objectsToGetNamesFrom.length; i++) {
+        const currentDataObject = objectsToGetNamesFrom[i];
+
+        const currentObject = getItemFromArrayWithId(currentDataObject.id, pokemonData),
+            currentCaughtQuantity = getQuantityWithId(currentDataObject.id, gameData.pokemonCaught);
+
+        names.push(convertNameToUpperCase(currentObject.pokemon));
+        encountered.push(currentDataObject.quantity);
+        caught.push(currentCaughtQuantity);
+        color1.push(currentObject.color_1);
+        color2.push(currentObject.color_2);
+        colorf.push(currentObject.color_f);
+    }
+    return [names, encountered, caught, color1, color2, colorf];
+}
+
+function convertNameToUpperCase(name) {
+    const firstLetter = name.charAt(0),
+        firstLetterUpper = firstLetter.toUpperCase(),
+        restOfNameArray = name.split('');
+
+    let newName = firstLetterUpper;
+
+    for (let i = 1; i < restOfNameArray.length; i++) {
+        const currentLetter = restOfNameArray[i];
+
+        newName += currentLetter;
+    }
+    return newName;
 }
