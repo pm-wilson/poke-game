@@ -66,3 +66,29 @@ export function getThreeDifferentRandoms(array) {
 
     return differentRandoms;
 }
+
+export function getRandomLocation(buttonNumber) {
+
+    const multiplier = Number(buttonNumber) + 1,
+        randomTop = Math.floor(Math.random() * 100) + (multiplier * 100),
+        randomSide = Math.floor(Math.random() * 500) + (multiplier * 75);
+
+    return [randomTop, randomSide];
+}
+
+export function getRandomBackground() {
+    const randomNumber = Math.floor(Math.random() * 6);
+
+    return 'url(./assets/backgrounds/background' + randomNumber + '.jpg)';
+}
+
+export function getItemFromArrayWithId(id, array) {
+    for (var i = 0; i < array.length; i++) {
+        const currentArrayItem = array[i];
+
+        if (currentArrayItem.id === id) {
+            return currentArrayItem;
+        }
+    }
+    return null;
+}
