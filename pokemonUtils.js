@@ -92,3 +92,10 @@ export function getItemFromArrayWithId(id, array) {
     }
     return null;
 }
+
+export function saveToLocalStorage(encounteredArray, caughtArray) {
+    const gameData = { pokemonEncountered: encounteredArray, pokemonCaught: caughtArray },
+        stringyGameData = JSON.stringify(gameData);
+
+    localStorage.setItem({ 'game1': stringyGameData });
+}

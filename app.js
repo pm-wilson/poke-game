@@ -1,6 +1,13 @@
 // import functions and grab DOM elements
 import { pokemonData } from './pokemonData.js';
-import { getPossibleEncounters, getThreeDifferentRandoms, getRandomLocation, getItemFromArrayWithId, getRandomBackground } from './pokemonUtils.js';
+import {
+    getPossibleEncounters,
+    getThreeDifferentRandoms,
+    saveToLocalStorage,
+    getRandomLocation,
+    getItemFromArrayWithId,
+    getRandomBackground
+} from './pokemonUtils.js';
 
 // initialize state
 let encounteredArray = [],
@@ -17,7 +24,6 @@ const userSelectInputArray = document.querySelectorAll('input'),
 
 
 function setupGameRound() {
-    console.log('setting up game round!');
     const possibleEncounters = getPossibleEncounters(pokemonData, lastGameIdsArray),
         threeRandomEncounters = getThreeDifferentRandoms(possibleEncounters),
         randomBackground = getRandomBackground();
@@ -34,7 +40,6 @@ function setupGameRound() {
     //update Pokemon seen
     pokemonSeen.textContent = countEncountered();
     currentRandomChoices = threeRandomEncounters;
-
     //set pictures and choose location
     for (let i = 0; i < 3; i++) {
         const currentImage = userSelectImageArray[i],
@@ -83,6 +88,10 @@ function userSelect(e, threeRandomEncounters) {
     updateCaught(chosenPokemon);
 
     if (catchTries === 10) {
+        //save caught and seen to local storage
+        saveToLocalStorage(encounteredArray, caughtArray);
+        //go to results page
+
         console.log("end game");
     } else {
         //rebuildButtonArea();
