@@ -90,6 +90,15 @@ footer {
 
 .button-2 {
   position: fixed;
-  top: 450px;
+  top: 400px;
   left: 750px;
+}
+
+img {
+  width: 100px;
+  height: auto;
+}
+
+input {
+  display: none;
 }
