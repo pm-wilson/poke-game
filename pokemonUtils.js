@@ -96,5 +96,17 @@ export function saveToLocalStorage(encounteredArray, caughtArray) {
     const gameData = { pokemonEncountered: encounteredArray, pokemonCaught: caughtArray },
         stringyGameData = JSON.stringify(gameData);
 
-    localStorage.setItem({ 'game1': stringyGameData });
+    localStorage.setItem('game1', stringyGameData);
+}
+
+export function getSize() {
+    const randomNum = Math.floor(Math.random() * 5);
+
+    switch (randomNum) {
+        case 0: return '30px';
+        case 1: return '80px';
+        case 2: return '101px';
+        case 3: return '115px';
+        case 4: return '125px';
+    }
 }
