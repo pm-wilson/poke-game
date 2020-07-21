@@ -1,0 +1,95 @@
+body {
+  --color1: hsla(138, 96%, 68%, 1);
+  --color2: hsla(177, 90%, 77%, 1);
+  --color3: hsla(206, 54%, 73%, 1);
+  --color4: hsla(248, 49%, 64%, 1);
+  --color5: hsla(288, 12%, 40%, 1);
+
+  --header-height: 80px;
+  --shadow: 0px 10px 20px -12px rgba(0, 0, 0, 0.45);
+  --gutter: 30px;
+  --footer-height: 25px;
+
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color2);
+}
+
+main {
+  position: fixed;
+  top: var(--header-height);
+  bottom: var(--footer-height);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: calc(var(--footer-height));
+  background-image: url("../assets/backgrounds/background0.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 1000px;
+  height: 100%;
+}
+
+span {
+  margin: 5px;
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color3);
+  height: var(--header-height);
+  box-shadow: var(--shadow);
+}
+
+.pokemon-info-area {
+  margin: 30px;
+}
+
+.game-title {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.screen-warning {
+  text-align: center;
+  font-size: small;
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  height: var(--footer-height);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color3);
+  box-shadow: var(--shadow);
+}
+
+.button-0 {
+  position: fixed;
+  top: 150px;
+  left: 500px;
+}
+
+.button-1 {
+  position: fixed;
+  top: 125px;
+  left: 100px;
+}
+
+.button-2 {
+  position: fixed;
+  top: 450px;
+  left: 750px;
+}

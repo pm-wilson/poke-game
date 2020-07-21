@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/home.css" />
+    <title>Pokemon Game</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="pokemon-info-area">
+        <span>Pokemon Seen:</span><span id="pokemon-seen">0</span>
+      </div>
+      <div>
+        <h1 class="game-title">Pokemon Game</h1>
+        <span class="screen-warning"
+          >Please be sure your screen is at least 1000px wide</span
+        >
+      </div>
+      <div class="pokemon-info-area">
+        <span>Pokemon Captured:</span><span id="pokemon-basket">0</span>
+      </div>
+    </header>
+
+    <main>
+      <label class="button-0">
+        <span class="percent-span">00</span>
+        <input type="radio" name="radio-0" value="0" />
+        <img />
+      </label>
+      <label class="button-1">
+        <span class="percent-span">01</span>
+        <input type="radio" name="radio-1" value="1" />
+        <img />
+      </label>
+      <label class="button-2">
+        <span class="percent-span">02</span>
+        <input type="radio" name="radio-2" value="2" />
+        <img />
+      </label>
+    </main>
+
+    <footer>
+      <div>&copy; 2020 Wilson Empire</div>
+    </footer>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
