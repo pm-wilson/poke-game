@@ -17,7 +17,6 @@ const userSelectInputArray = document.querySelectorAll('input'),
 
 
 function setupGameRound() {
-    console.log('setting up game round!');
     const possibleEncounters = getPossibleEncounters(pokemonData, lastGameIdsArray),
         threeRandomEncounters = getThreeDifferentRandoms(possibleEncounters),
         randomBackground = getRandomBackground();
@@ -40,6 +39,7 @@ function setupGameRound() {
         const currentImage = userSelectImageArray[i],
             randomLocation = getRandomLocation(i),
             locationId = document.getElementById('b' + i);
+            
         //set picture
         currentImage.src = threeRandomEncounters[i].url_image;
 

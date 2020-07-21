@@ -68,7 +68,6 @@ export function getThreeDifferentRandoms(array) {
 }
 
 export function getRandomLocation(buttonNumber) {
-
     const multiplier = Number(buttonNumber) + 1,
         randomTop = Math.floor(Math.random() * 100) + (multiplier * 100),
         randomSide = Math.floor(Math.random() * 500) + (multiplier * 75);
