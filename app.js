@@ -45,6 +45,7 @@ function setupGameRound() {
         const currentImage = userSelectImageArray[i],
             randomLocation = getRandomLocation(i),
             locationId = document.getElementById('b' + i);
+
         //set picture
         currentImage.src = threeRandomEncounters[i].url_image;
 
@@ -92,7 +93,7 @@ function userSelect(e, threeRandomEncounters) {
         saveToLocalStorage(encounteredArray, caughtArray);
         //go to results page
 
-        console.log("end game");
+        console.log('end game');
     } else {
         //rebuildButtonArea();
         setupGameRound();
