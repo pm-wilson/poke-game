@@ -16,6 +16,7 @@ const chartLabelsArray = mungedData[0],
     chartCaughtData = mungedData[2],
     chartColors1Array = mungedData[3];
 
+Chart.defaults.global.defaultFontColor = 'black';//eslint-disable-line
 var myChart = new Chart(ctx, {//eslint-disable-line
     type: 'bar',
     data: {

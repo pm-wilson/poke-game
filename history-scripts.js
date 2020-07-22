@@ -12,6 +12,7 @@ const ctx = document.getElementById('myChart').getContext('2d'),
     chartCaughtData = mungedData[2],
     chartColors1Array = mungedData[3];
 
+Chart.defaults.global.defaultFontColor = 'black';//eslint-disable-line
 let myChart = new Chart(ctx, {//eslint-disable-line
     type: 'bar',
     data: {
