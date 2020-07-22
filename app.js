@@ -120,6 +120,7 @@ function initializeGame() {
         currentInput.addEventListener('click', (e) => {
             userSelect(e, currentRandomChoices);
         });
+        localStorage.clear();
     }
     setupGameRound();
 }
