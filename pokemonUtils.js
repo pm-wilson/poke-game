@@ -1,4 +1,4 @@
-import { userDataLabel } from "./constants.js";
+import { userDataLabel } from './constants.js';
 
 export function chooseRandomItemFromArray(array) {
     const randomIndex = Math.floor(Math.random() * array.length);
@@ -238,13 +238,13 @@ export function mungedHistoryData(pokemonData) {
             if (itemInArray) {
                 const idRef = getRefFromArray(currentEncounteredItem.id, ids);
                 encountered[idRef] += currentEncounteredItem.quantity;
-                caught[idRef] += getCountFromArray(currentEncounteredItem.id, currentCaught); //the referenced caught number
+                caught[idRef] += getCountFromArray(currentEncounteredItem.id, currentCaught);
             } else {
                 const currentInfo = getInfoFromData(currentEncounteredItem.id, pokemonData);
 
                 ids.push(currentEncounteredItem.id);
                 encountered.push(currentEncounteredItem.quantity);
-                caught.push(getCountFromArray(currentEncounteredItem.id, currentCaught))//the referenced caught number
+                caught.push(getCountFromArray(currentEncounteredItem.id, currentCaught));
                 names.push(convertNameToUpperCase(currentInfo[0]));
                 color1.push(currentInfo[1]);
                 color2.push(currentInfo[2]);

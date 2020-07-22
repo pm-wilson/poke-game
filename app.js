@@ -116,7 +116,7 @@ function countEncountered() {
 function initializeGame() {
     for (let i = 0; i < 3; i++) {
         const currentInput = userSelectInputArray[i];
-        //set event listener
+
         currentInput.addEventListener('click', (e) => {
             userSelect(e, currentRandomChoices);
         });
