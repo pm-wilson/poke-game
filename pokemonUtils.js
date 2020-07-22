@@ -1,3 +1,5 @@
+import { userDataLabel } from "./constants.js";
+
 export function chooseRandomItemFromArray(array) {
     const randomIndex = Math.floor(Math.random() * array.length);
 
@@ -70,13 +72,15 @@ export function getRandomBackground() {
 
 export function saveToLocalStorage(encounteredArray, caughtArray) {
     const gameData = { pokemonEncountered: encounteredArray, pokemonCaught: caughtArray },
+        saveGameLabel = userDataLabel + '-' + localStorage.length,
         stringyGameData = JSON.stringify(gameData);
 
-    localStorage.setItem('game1', stringyGameData);
+    localStorage.setItem(saveGameLabel, stringyGameData);
 }
 
 export function loadFromLocalStorage() {
-    const stringyData = localStorage.getItem('game1'),
+    const dataToGet = localStorage.length - 1,
+        stringyData = localStorage.getItem(userDataLabel + '-' + dataToGet),
         gameData = JSON.parse(stringyData);
 
     return gameData;
@@ -168,4 +172,86 @@ function convertNameToUpperCase(name) {
         newName += currentLetter;
     }
     return newName;
+}
+
+function loadGameFromLocalStorage(gameNum) {
+    const dataToGet = gameNum,
+        stringyData = localStorage.getItem(userDataLabel + '-' + dataToGet),
+        gameData = JSON.parse(stringyData);
+
+    return gameData;
+}
+
+function getRefFromArray(item, array) {
+    for (let i = 0; i < array.length; i++) {
+        if (item === array[i]) {
+            return i;
+        }
+    }
+    return null;
+}
+
+function getInfoFromData(id, pokemonData) {
+    for (let i = 0; i < pokemonData.length; i++) {
+        const currentPokeInfo = pokemonData[i];
+        if (id === currentPokeInfo.id || id === currentPokeInfo._id) {
+            const name = currentPokeInfo.pokemon,
+                color1 = currentPokeInfo.color_1,
+                color2 = currentPokeInfo.color_2,
+                colorf = currentPokeInfo.color_f;
+
+            return [name, color1, color2, colorf];
+        }
+    }
+    return null;
+}
+
+function getCountFromArray(id, array) {
+    for (let i = 0; i < array.length; i++) {
+        const currentItem = array[i];
+
+        if (currentItem.id === id) {
+            return currentItem.quantity;
+        }
+    }
+    return 0;
+}
+
+export function mungedHistoryData(pokemonData) {
+    const ids = [],
+        names = [],
+        encountered = [],
+        caught = [],
+        color1 = [],
+        color2 = [],
+        colorf = [];
+
+    for (let i = 0; i < localStorage.length; i++) {
+        const currentStorageObject = loadGameFromLocalStorage(i),
+            currentEncountered = currentStorageObject.pokemonEncountered,
+            currentCaught = currentStorageObject.pokemonCaught;
+
+        for (let n = 0; n < currentEncountered.length; n++) {
+            const currentEncounteredItem = currentEncountered[n],
+                itemInArray = isItemInArray(currentEncounteredItem.id, ids);
+
+            if (itemInArray) {
+                const idRef = getRefFromArray(currentEncounteredItem.id, ids);
+                encountered[idRef] += currentEncounteredItem.quantity;
+                caught[idRef] += getCountFromArray(currentEncounteredItem.id, currentCaught); //the referenced caught number
+            } else {
+                const currentInfo = getInfoFromData(currentEncounteredItem.id, pokemonData);
+
+                ids.push(currentEncounteredItem.id);
+                encountered.push(currentEncounteredItem.quantity);
+                caught.push(getCountFromArray(currentEncounteredItem.id, currentCaught))//the referenced caught number
+                names.push(convertNameToUpperCase(currentInfo[0]));
+                color1.push(currentInfo[1]);
+                color2.push(currentInfo[2]);
+                colorf.push(currentInfo[3]);
+            }
+        }
+    }
+
+    return [names, encountered, caught, color1, color2, colorf];
 }

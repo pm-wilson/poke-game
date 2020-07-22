@@ -101,3 +101,16 @@ img {
 input {
   display: none;
 }
+
+#reset-game {
+  background-color: var(--color1);
+}
+
+#results-history {
+  background-color: var(--color5);
+  color: var(--color2);
+}
+
+#reset-history {
+  background-color: red;
+}

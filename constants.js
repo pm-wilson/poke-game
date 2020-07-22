@@ -1,1 +1,1 @@
-export const userData = 'USERDATA';
+export const userDataLabel = 'USERDATA';

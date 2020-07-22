@@ -96,11 +96,8 @@ function userSelect(e, threeRandomEncounters) {
 
     if (catchTries === 10) {
         saveToLocalStorage(encounteredArray, caughtArray);
-
-        //go to results page
         window.location.href = './results.html';
     } else {
-        //rebuildButtonArea();
         setupGameRound();
     }
 }

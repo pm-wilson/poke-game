@@ -1,22 +1,18 @@
-import {
-    loadFromLocalStorage,
-    getMungedData
-} from './pokemonUtils.js';
+import { mungedHistoryData } from './pokemonUtils.js';
 import { pokemonData } from './pokemonData.js';
 
-const backgroundArea = document.querySelector('#background-image-area'),
-    gameData = loadFromLocalStorage(),
-    ctx = document.getElementById('myChart').getContext('2d'),
-    mungedData = getMungedData(gameData, pokemonData),
-    resetButton = document.querySelector('#reset-game'),
-    historyButton = document.querySelector('#results-history');
+const resetButton = document.querySelector('#reset-game'),
+    clearHistory = document.querySelector('#reset-history');
 
-const chartLabelsArray = mungedData[0],
+const mungedData = mungedHistoryData(pokemonData);
+
+const ctx = document.getElementById('myChart').getContext('2d'),
+    chartLabelsArray = mungedData[0],
     chartEncounteredData = mungedData[1],
     chartCaughtData = mungedData[2],
     chartColors1Array = mungedData[3];
 
-var myChart = new Chart(ctx, {//eslint-disable-line
+let myChart = new Chart(ctx, {//eslint-disable-line
     type: 'bar',
     data: {
         labels: chartLabelsArray,
@@ -59,13 +55,8 @@ resetButton.addEventListener('click', () => {
     window.location.href = './index.html';
 });
 
-historyButton.addEventListener('click', () => {
-    window.location.href = './history.html';
+clearHistory.addEventListener('click', () => {
+    localStorage.clear();
+    clearHistory.textContent = 'History Clear';
+    clearHistory.style.backgroundColor = 'hsla(206, 54%, 73%, 1)';
 });
-
-function loadResultsPage() {
-    //change background
-    backgroundArea.style.backgroundImage = 'url(./assets/backgrounds/background-results.jpg)';
-}
-
-loadResultsPage();
