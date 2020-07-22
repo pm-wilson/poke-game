@@ -6,7 +6,8 @@ import {
     saveToLocalStorage,
     getRandomLocation,
     getItemFromArrayWithId,
-    getRandomBackground
+    getRandomBackground,
+    getSize
 } from './pokemonUtils.js';
 
 // initialize state
@@ -44,7 +45,9 @@ function setupGameRound() {
     for (let i = 0; i < 3; i++) {
         const currentImage = userSelectImageArray[i],
             randomLocation = getRandomLocation(i),
-            locationId = document.getElementById('b' + i);
+            locationId = document.getElementById('b' + i),
+            sizeElementName = 'img-' + i,
+            elementToSize = document.getElementById(sizeElementName);
 
         //set picture
         currentImage.src = threeRandomEncounters[i].url_image;
@@ -52,6 +55,9 @@ function setupGameRound() {
         //set location
         locationId.style.top = randomLocation[0] + 'px';
         locationId.style.left = randomLocation[1] + 'px';
+
+        //set size
+        elementToSize.style.width = getSize();
     }
 }
 
@@ -89,13 +95,9 @@ function userSelect(e, threeRandomEncounters) {
     updateCaught(chosenPokemon);
 
     if (catchTries === 10) {
-        //save caught and seen to local storage
         saveToLocalStorage(encounteredArray, caughtArray);
-        //go to results page
-
-        console.log('end game');
+        window.location.href = './results.html';
     } else {
-        //rebuildButtonArea();
         setupGameRound();
     }
 }
@@ -114,7 +116,7 @@ function countEncountered() {
 function initializeGame() {
     for (let i = 0; i < 3; i++) {
         const currentInput = userSelectInputArray[i];
-        //set event listener
+
         currentInput.addEventListener('click', (e) => {
             userSelect(e, currentRandomChoices);
         });
