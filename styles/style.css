@@ -90,6 +90,27 @@ footer {
 
 .button-2 {
   position: fixed;
-  top: 450px;
+  top: 400px;
   left: 750px;
+}
+
+img {
+  height: auto;
+}
+
+input {
+  display: none;
+}
+
+#reset-game {
+  background-color: var(--color1);
+}
+
+#results-history {
+  background-color: var(--color5);
+  color: var(--color2);
+}
+
+#reset-history {
+  background-color: red;
 }
